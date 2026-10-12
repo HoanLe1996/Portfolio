@@ -89,7 +89,7 @@
     },
     {
         "name": "MySQL",
-        "icon": "https://cdn.simpleicons.org/mysql/4479A1"
+        "icon": "https://cdn.simpleicons.org/mysql/ffffff"
     },
     {
         "name": "SQL Server",
@@ -105,7 +105,7 @@
     },
     {
         "name": "AWS",
-        "icon": "https://img.icons8.com/color/48/000000/amazon-web-services.png"
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"
     },
     {
         "name": "Docker",

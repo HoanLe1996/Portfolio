@@ -105,9 +105,10 @@ function showProjects(projects) {
     // isotope filter products
     var $grid = $('.box-container').isotope({
         itemSelector: '.grid-item',
-        layoutMode: 'fitRows',
+        layoutMode: 'masonry',
         masonry: {
-            columnWidth: 200
+            columnWidth: '.grid-item',
+            fitWidth: true
         }
     });
 
