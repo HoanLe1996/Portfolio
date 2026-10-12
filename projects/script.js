@@ -21,11 +21,11 @@ document.addEventListener('visibilitychange',
     function () {
         if (document.visibilityState === "visible") {
             document.title = "Projects | Portfolio Lê Văn Hoan";
-            $("#favicon").attr("href", "/assets/images/favicon.png");
+            $("#favicon").attr("href", "../assets/images/favicon.png");
         }
         else {
             document.title = "Come Back To Portfolio";
-            $("#favicon").attr("href", "/assets/images/favhand.png");
+            $("#favicon").attr("href", "../assets/images/favhand.png");
         }
     });
 
@@ -40,6 +40,29 @@ function getProjects() {
 }
 
 
+function projectCover(project, root) {
+    if (project.image) {
+        return `<img draggable="false" src="${root}assets/images/projects/${project.image}.png" alt="project" />`;
+    }
+    return `
+      <div class="cover">
+        <i class="${project.icon}"></i>
+        <h4>${project.domain}</h4>
+        <span>${project.role} | ${project.period}</span>
+      </div>`;
+}
+
+function projectFooter(project) {
+    if (project.links) {
+        return `
+          <div class="btns">
+            <a href="${project.links.view}" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+            <a href="${project.links.code}" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+          </div>`;
+    }
+    return `<p class="stack"><i class="fas fa-layer-group"></i> ${project.stack}</p>`;
+}
+
 function showProjects(projects) {
     let projectsContainer = document.querySelector(".work .box-container");
     let projectsHTML = "";
@@ -47,17 +70,14 @@ function showProjects(projects) {
         projectsHTML += `
         <div class="grid-item ${project.category}">
         <div class="box tilt" style="width: 380px; margin: 1rem">
-      <img draggable="false" src="/assets/images/projects/${project.image}.png" alt="project" />
+      ${projectCover(project, "../")}
       <div class="content">
         <div class="tag">
         <h3>${project.name}</h3>
         </div>
         <div class="desc">
           <p>${project.desc}</p>
-          <div class="btns">
-            <a href="${project.links.view}" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
-            <a href="${project.links.code}" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
-          </div>
+          ${projectFooter(project)}
         </div>
       </div>
     </div>

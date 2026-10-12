@@ -71,7 +71,7 @@ document.addEventListener('visibilitychange',
 
 // <!-- typed js effect starts -->
 var typed = new Typed(".typing-text", {
-    strings: ["frontend developer", "backend developer","android developer", "web developer"],
+    strings: ["full-stack developer", "technical team lead", "backend developer", "frontend developer"],
     loop: true,
     typeSpeed: 50,
     backSpeed: 25,
@@ -104,23 +104,43 @@ function showSkills(skills) {
     skillsContainer.innerHTML = skillHTML;
 }
 
+function projectCover(project, root) {
+    if (project.image) {
+        return `<img draggable="false" src="${root}assets/images/projects/${project.image}.png" alt="project" />`;
+    }
+    return `
+      <div class="cover">
+        <i class="${project.icon}"></i>
+        <h4>${project.domain}</h4>
+        <span>${project.role} | ${project.period}</span>
+      </div>`;
+}
+
+function projectFooter(project) {
+    if (project.links) {
+        return `
+          <div class="btns">
+            <a href="${project.links.view}" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+            <a href="${project.links.code}" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+          </div>`;
+    }
+    return `<p class="stack"><i class="fas fa-layer-group"></i> ${project.stack}</p>`;
+}
+
 function showProjects(projects) {
     let projectsContainer = document.querySelector("#work .box-container");
     let projectHTML = "";
-    projects.slice(0, 10).filter(project => project.category != "android").forEach(project => {
+    projects.slice(0, 6).forEach(project => {
         projectHTML += `
         <div class="box tilt">
-      <img draggable="false" src="/assets/images/projects/${project.image}.png" alt="project" />
+      ${projectCover(project, "./")}
       <div class="content">
         <div class="tag">
         <h3>${project.name}</h3>
         </div>
         <div class="desc">
           <p>${project.desc}</p>
-          <div class="btns">
-            <a href="${project.links.view}" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
-            <a href="${project.links.code}" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
-          </div>
+          ${projectFooter(project)}
         </div>
       </div>
     </div>`
